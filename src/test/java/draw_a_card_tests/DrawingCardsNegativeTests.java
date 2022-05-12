@@ -11,6 +11,9 @@ import static io.restassured.RestAssured.get;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
+/**
+ * Here we test whether API returns error messages in case of invalid value provided in count
+ */
 public class DrawingCardsNegativeTests extends Common {
     private final String errorMessageResponseJsonPath = "error";
     private static String partialRequestURL;
@@ -21,7 +24,7 @@ public class DrawingCardsNegativeTests extends Common {
         //create a new deck
         Response newDeckResponse = get("/new");
         assertEquals(newDeckResponse.statusCode(), successfulRequestStatusCode);
-        partialRequestURL = "/" + newDeckResponse.jsonPath().get("deck_id") + "/draw/?count=";
+        partialRequestURL = "/" + newDeckResponse.jsonPath().get(deckIdResponseJsonPath) + "/draw/?count=";
     }
 
     @ParameterizedTest

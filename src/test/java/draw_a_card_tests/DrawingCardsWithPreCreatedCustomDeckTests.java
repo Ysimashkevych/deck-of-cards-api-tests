@@ -11,6 +11,10 @@ import java.util.List;
 import static io.restassured.RestAssured.get;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Test for checking drawing of cards from created before deck of cards having defined number of cards, which is randomly picked from whole list before execution
+ * Number of Cards to draw randomized to have fewer tests but still cover many options
+ */
 public class DrawingCardsWithPreCreatedCustomDeckTests extends Common {
 
     private static final int countOfCardsInDeck = getRandomIntInRange(1, allAvailableCardsCodes.size());
@@ -20,12 +24,11 @@ public class DrawingCardsWithPreCreatedCustomDeckTests extends Common {
 
     @BeforeAll
     static void testsSetUp() {
-
         setUp();
         //create a new deck
         Response newDeckResponse = get("/new/shuffle/?cards=" + String.join(",", cardsList));
         assertEquals(successfulRequestStatusCode, newDeckResponse.statusCode());
-        String deckId = newDeckResponse.jsonPath().get("deck_id");
+        String deckId = newDeckResponse.jsonPath().get(deckIdResponseJsonPath);
 
         Response drawResponse = get("/" + deckId + "/draw/?count=" + numberOfCardsToDraw);
         assertEquals(successfulRequestStatusCode, drawResponse.statusCode());

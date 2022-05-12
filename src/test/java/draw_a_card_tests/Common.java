@@ -18,6 +18,7 @@ public class Common {
     public static final int successfulRequestStatusCode = 200;
     public static final int defaultNumberOfCardsInDeck = 52;
     public static final String successResponseJsonPath = "success";
+    public static final String deckIdResponseJsonPath = "deck_id";
     public static void setUp() {
         baseURI = "https://deckofcardsapi.com/api/deck";
     }

@@ -10,6 +10,10 @@ import java.util.ArrayList;
 import static io.restassured.RestAssured.get;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Test for checking drawing of cards from created before deck of cards
+ * Number of Cards to draw randomized to have fewer tests but still cover many options
+ */
 public class DrawingCardsWithPreCreatedDeckTests extends Common {
 
     private static final int countOfCardsInDeck = defaultNumberOfCardsInDeck;
@@ -22,7 +26,7 @@ public class DrawingCardsWithPreCreatedDeckTests extends Common {
         //create a new deck
         Response newDeckResponse = get("/new");
         assertEquals(newDeckResponse.statusCode(), successfulRequestStatusCode);
-        String deckId = newDeckResponse.jsonPath().get("deck_id");
+        String deckId = newDeckResponse.jsonPath().get(deckIdResponseJsonPath);
 
         Response response = get("/" + deckId + "/draw/?count=" + numberOfCardsToDraw);
         assertEquals(response.statusCode(), successfulRequestStatusCode);

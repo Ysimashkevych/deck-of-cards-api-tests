@@ -10,6 +10,10 @@ import java.util.ArrayList;
 import static io.restassured.RestAssured.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Test for checking drawing of cards from band new deck of cards
+ * Number of Cards to draw randomized to have fewer tests but still cover many options
+ */
 public class DrawingCardsWithNewDeckTests extends Common {
 
     private static final int countOfCardsInDeck = defaultNumberOfCardsInDeck;

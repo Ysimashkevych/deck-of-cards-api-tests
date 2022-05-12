@@ -9,6 +9,9 @@ import io.restassured.response.Response;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+/**
+ * Tests for checking response data, not everything, just those that won't be covered in other tests
+ */
 public class ResponseVerificationTests extends Common{
     private static JsonPath drawACardResponseAsJsonPath;
     private static String deckId;
@@ -19,7 +22,7 @@ public class ResponseVerificationTests extends Common{
         //create a new deck
         Response newDeckResponse = get("/new/shuffle/?cards=AS");
         assertEquals(newDeckResponse.statusCode(), successfulRequestStatusCode);
-        deckId = newDeckResponse.jsonPath().get("deck_id");
+        deckId = newDeckResponse.jsonPath().get(deckIdResponseJsonPath);
         //draw a card
         Response drawACardResponse = get("/" + deckId + "/draw/?count=1");
         assertEquals(drawACardResponse.statusCode(), successfulRequestStatusCode);
@@ -28,7 +31,7 @@ public class ResponseVerificationTests extends Common{
 
     @Test
     public void successShouldBeTrue(){
-        assertTrue(drawACardResponseAsJsonPath.getBoolean("success"));
+        assertTrue(drawACardResponseAsJsonPath.getBoolean(successResponseJsonPath));
     }
 
     @Test
@@ -53,6 +56,6 @@ public class ResponseVerificationTests extends Common{
 
     @Test
     public void deckIdShouldMatchCreatedDeckId() {
-        assertEquals(deckId, drawACardResponseAsJsonPath.get("deck_id"));
+        assertEquals(deckId, drawACardResponseAsJsonPath.get(deckIdResponseJsonPath));
     }
 }

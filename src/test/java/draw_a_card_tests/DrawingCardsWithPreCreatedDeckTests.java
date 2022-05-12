@@ -12,8 +12,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DrawingCardsWithPreCreatedDeckTests extends Common {
 
-    private static int countOfCardsInDeck = defaultNumberOfCardsInDeck;
-    private static int numberOfCardsToDraw = getRandomIntInRange(1, countOfCardsInDeck);
+    private static final int countOfCardsInDeck = defaultNumberOfCardsInDeck;
+    private static final int numberOfCardsToDraw = getRandomIntInRange(1, countOfCardsInDeck);
     private static JsonPath drawACardResponseAsJsonPath;
 
     @BeforeAll

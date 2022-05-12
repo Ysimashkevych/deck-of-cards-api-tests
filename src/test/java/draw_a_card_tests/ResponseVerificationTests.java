@@ -2,13 +2,14 @@ package draw_a_card_tests;
 
 import static io.restassured.RestAssured.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-public class ResponceVerificationTests extends Common{
+public class ResponseVerificationTests extends Common{
     private static JsonPath drawACardResponseAsJsonPath;
     private static String deckId;
 
@@ -27,7 +28,7 @@ public class ResponceVerificationTests extends Common{
 
     @Test
     public void successShouldBeTrue(){
-        assertEquals(true, drawACardResponseAsJsonPath.getBoolean("success"));
+        assertTrue(drawACardResponseAsJsonPath.getBoolean("success"));
     }
 
     @Test
